@@ -1,0 +1,26 @@
+# Node
+node_modules/
+dist/
+.turbo/
+.pnpm-store/
+pnpm-debug.log*
+yarn.lock
+package-lock.json
+
+# TypeScript
+*.tsbuildinfo
+
+# Rust
+/target/
+Cargo.lock
+
+# Foundry (Solidity)
+contracts/evm/out/
+contracts/evm/cache/
+.env
+
+# Editor/OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
