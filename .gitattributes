@@ -1,0 +1,7 @@
+* text=auto eol=lf
+
+# Solidity
+*.sol linguist-language=Solidity
+
+# Rust
+*.rs linguist-language=Rust

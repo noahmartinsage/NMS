@@ -1,0 +1,26 @@
+{
+  "name": "@repo/monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Monorepo skeleton for Rust, TypeScript, and Solidity development",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@9",
+  "workspaces": [
+    "apps/*",
+    "sdk/ts"
+  ],
+  "scripts": {
+    "setup": "pnpm install && echo 'Note: Install Foundry (forge) separately via foundryup: https://book.getfoundry.sh/getting-started/installation'",
+    "build:all": "turbo run build --no-daemon && (command -v cargo >/dev/null 2>&1 && cargo build --workspace || echo 'Skipping cargo build: cargo not installed') && (command -v forge >/dev/null 2>&1 && forge build --root contracts/evm || echo 'Skipping forge build: forge not installed')",
+    "dev:all": "echo 'Dev placeholder: no apps scaffolded yet. Use `turbo run dev` once apps exist.'",
+    "fmt": "echo 'Format: not configured yet'",
+    "lint": "echo 'Lint: not configured yet'"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.6",
+    "typescript": "^5.4.5"
+  }
+}
