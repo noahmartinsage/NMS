@@ -1,12 +1,31 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-// Simple deploy script stub. To use Foundry's Script utilities,
-// install forge-std via: `forge install foundry-rs/forge-std` and
-// then import "forge-std/Script.sol".
+import {Script, Vm} from "forge-std/Script.sol";
+import {RewardNFT} from "../src/RewardNFT.sol";
+import {RewardManager} from "../src/RewardManager.sol";
+import {DeployConfig} from "./ConfigLib.s.sol";
 
-contract DeployStub {
+contract Deploy is Script {
+    using DeployConfig for Vm;
+
     function run() external {
-        // TODO: add deployment logic using forge-std's Script helpers.
+        uint256 privateKey = vm.envUint("PRIVATE_KEY");
+
+        vm.startBroadcast(privateKey);
+
+        string memory name = vm.getEnvStringOr("NFT_NAME", "RewardNFT");
+        string memory symbol = vm.getEnvStringOr("NFT_SYMBOL", "RNFT");
+        address royaltyReceiver = vm.getEnvAddressOr("ROYALTY_RECEIVER", address(0));
+        uint256 royaltyFeeNumerator = vm.getEnvUintOr("ROYALTY_FEE_NUMERATOR", 0);
+
+        RewardNFT nft = new RewardNFT(name, symbol, royaltyReceiver, uint96(royaltyFeeNumerator));
+        RewardManager manager = new RewardManager();
+
+        // Prevent unused variable warnings
+        nft;
+        manager;
+
+        vm.stopBroadcast();
     }
 }
