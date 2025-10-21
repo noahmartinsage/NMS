@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import type { ReactNode } from "react";
 import "./globals.css";
 import { Providers } from "../providers/Providers";
 import { Nav } from "../components/Nav";
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   description: "Next.js 14 DApp scaffold with wagmi/viem/zustand"
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={`${inter.className} bg-background text-foreground min-h-screen`}>

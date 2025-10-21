@@ -2,9 +2,10 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import type { ReactNode } from "react";
 import { telemetry } from "../lib/telemetry";
 
-export function TelemetryProvider({ children }: { children: React.ReactNode }) {
+export function TelemetryProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
