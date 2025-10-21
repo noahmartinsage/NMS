@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run formatting check and linting for JS/TS
+pnpm run format:check || exit 1
+pnpm run lint || exit 1

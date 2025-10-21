@@ -1,0 +1,36 @@
+name: Rust CI
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "Cargo.toml"
+      - "**/Cargo.toml"
+      - "**/Cargo.lock"
+      - "**/*.rs"
+      - "rustfmt.toml"
+      - "Clippy.toml"
+  pull_request:
+    paths:
+      - "Cargo.toml"
+      - "**/Cargo.toml"
+      - "**/Cargo.lock"
+      - "**/*.rs"
+      - "rustfmt.toml"
+      - "Clippy.toml"
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - uses: Swatinem/rust-cache@v2
+      - name: Format (check)
+        run: cargo fmt --all -- --check
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+      - name: Test
+        run: cargo test --workspace --all-features --all-targets --verbose

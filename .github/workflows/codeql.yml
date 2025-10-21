@@ -1,0 +1,44 @@
+name: CodeQL
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  schedule:
+    - cron: "0 3 * * 1" # weekly on Mondays
+
+permissions:
+  contents: read
+
+jobs:
+  analyze-js:
+    name: Analyze (JavaScript/TypeScript)
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+      - uses: github/codeql-action/autobuild@v3
+      - uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:javascript-typescript"
+
+  # Placeholders for Rust and Solidity. CodeQL currently does not
+  # support Solidity and Rust support may be limited depending on your plan.
+  # These jobs are informational and always pass to keep CI green.
+  analyze-rust:
+    name: Analyze (Rust placeholder)
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "CodeQL for Rust is not configured in this template."
+
+  analyze-solidity:
+    name: Analyze (Solidity placeholder)
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "CodeQL does not support Solidity; consider Slither or Mythril."

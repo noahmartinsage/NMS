@@ -1,0 +1,31 @@
+name: Solidity CI
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "contracts/evm/**"
+  pull_request:
+    paths:
+      - "contracts/evm/**"
+
+jobs:
+  foundry:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: contracts/evm
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: stable
+      - name: Print forge version
+        run: forge --version
+      - name: Format (check)
+        run: forge fmt --check
+      - name: Build
+        run: forge build --sizes
+      - name: Test
+        run: forge test -vvv

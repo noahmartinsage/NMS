@@ -59,10 +59,22 @@ pnpm install
 pnpm run build:all
 ```
 
-4) Development (placeholder)
+4) Start and preview apps
+
+- Web: http://localhost:3000
+- Admin: http://localhost:3001
+- API Gateway: http://localhost:4000
+
+Commands:
 
 ```
-pnpm run dev:all
+# 启动单个应用
+pnpm run start:web
+pnpm run start:admin
+pnpm run start:api
+
+# 或并行启动以上三个应用（本地开发演示）
+pnpm run start:apps
 ```
 
 Notes:
