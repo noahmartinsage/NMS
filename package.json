@@ -10,6 +10,7 @@
   "packageManager": "pnpm@9",
   "workspaces": [
     "apps/*",
+    "packages/*",
     "sdk/ts"
   ],
   "scripts": {
@@ -17,6 +18,7 @@
     "setup": "pnpm install && echo 'Note: Install Foundry (forge) separately via foundryup: https://book.getfoundry.sh/getting-started/installation'",
     "build": "turbo run build --no-daemon",
     "build:all": "turbo run build --no-daemon && (command -v cargo >/dev/null 2>&1 && cargo build --workspace || echo 'Skipping cargo build: cargo not installed') && (command -v forge >/dev/null 2>&1 && forge build --root contracts/evm || echo 'Skipping forge build: forge not installed')",
+    "dev": "pnpm run start:web",
     "dev:all": "echo '使用 pnpm run start:web 或 start:admin/start:api 启动各应用预览'",
     "start:web": "pnpm --filter @repo/web run dev",
     "start:admin": "pnpm --filter @repo/admin run dev",

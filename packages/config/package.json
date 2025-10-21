@@ -1,0 +1,8 @@
+{
+  "name": "@repo/config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared configuration and tokens for the monorepo (Tailwind, theme tokens, etc.)",
+  "license": "UNLICENSED"
+}
