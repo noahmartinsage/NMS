@@ -16,7 +16,9 @@ Cargo.lock
 
 # Foundry (Solidity)
 contracts/evm/out/
+contracts/evm/artifacts/
 contracts/evm/cache/
+contracts/evm/.env
 .env
 
 # Editor/OS
