@@ -1,0 +1,7 @@
+dist/
+.out/
+.turbo/
+node_modules/
+contracts/evm/out/
+contracts/evm/cache/
+**/*.min.js

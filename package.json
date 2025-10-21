@@ -13,14 +13,28 @@
     "sdk/ts"
   ],
   "scripts": {
+    "prepare": "husky",
     "setup": "pnpm install && echo 'Note: Install Foundry (forge) separately via foundryup: https://book.getfoundry.sh/getting-started/installation'",
+    "build": "turbo run build --no-daemon",
     "build:all": "turbo run build --no-daemon && (command -v cargo >/dev/null 2>&1 && cargo build --workspace || echo 'Skipping cargo build: cargo not installed') && (command -v forge >/dev/null 2>&1 && forge build --root contracts/evm || echo 'Skipping forge build: forge not installed')",
     "dev:all": "echo 'Dev placeholder: no apps scaffolded yet. Use `turbo run dev` once apps exist.'",
-    "fmt": "echo 'Format: not configured yet'",
-    "lint": "echo 'Lint: not configured yet'"
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "fmt": "pnpm run format",
+    "lint": "eslint . --ext .ts,.tsx,.js,.mjs,.cjs",
+    "lint:fix": "pnpm run lint -- --fix",
+    "test": "vitest run --reporter=dot"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.4.0",
+    "@eslint/js": "^9.13.0",
+    "@types/node": "^20.14.11",
+    "eslint": "^9.13.0",
+    "husky": "^9.1.6",
     "turbo": "^2.0.6",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^8.8.1",
+    "vitest": "^2.1.2"
   }
 }

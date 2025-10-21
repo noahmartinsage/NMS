@@ -1,0 +1,8 @@
+warns = [
+  "clippy::all"
+]
+
+# Common false positives we can relax early on; tighten over time
+allows = [
+  "clippy::module_name_repetitions"
+]
